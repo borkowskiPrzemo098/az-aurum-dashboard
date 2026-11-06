@@ -4,306 +4,279 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AZ Aurum Dashboard App</title>
-<meta name="description" content="Wszystkie firmowe narzędzia AZ Aurum w jednym miejscu: zamówienia, mailing, oferty, Google Ads, opisy produktów i zadania.">
-<meta name="theme-color" content="#121318">
+<meta name="description" content="Wszystkie aplikacje firmowe AZ Aurum w jednym miejscu: zamówienia, mailing, oferty, Google Ads, opisy produktów i zadania.">
+<meta name="theme-color" content="#f7f5f0">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23d4af5a'/%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%23121318' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='24' fill='%23121318'%3EAZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23b8913f'/%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='20' fill='%23fff'%3EAZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#121318; --ink-2:#1a1c23; --ink-3:#24262f; --line:#2f323d;
-  --gold:#d4af5a; --gold-2:#ecd08c; --gold-deep:#8a6a22;
-  --text:#f1ece1; --muted:#b2ab9c; --faint:#8b8577;
-  --serif:"Bodoni Moda", "Didot", Georgia, serif;
-  --sans:"Manrope", system-ui, sans-serif;
+  --bg:#f7f5f0; --card:#ffffff; --ink:#191c24; --ink-2:#4b5060; --ink-3:#6c7180;
+  --line:#e7e2d7; --line-2:#d9d2c3;
+  --gold:#b8913f; --gold-d:#8c6a22; --gold-l:#f3ead6;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-  --r:14px;
+  --shadow:0 1px 2px rgba(25,28,36,.06),0 8px 24px -10px rgba(25,28,36,.14);
+  --shadow-h:0 2px 4px rgba(25,28,36,.06),0 22px 44px -16px rgba(25,28,36,.24);
 }
 *{box-sizing:border-box}
-html{color-scheme:dark;scrollbar-color:var(--gold-deep) var(--ink)}
-body{margin:0;background:var(--ink);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:var(--gold);color:var(--ink)}
-::-webkit-scrollbar{width:12px}
-::-webkit-scrollbar-track{background:var(--ink)}
-::-webkit-scrollbar-thumb{background:var(--ink-3);border:3px solid var(--ink);border-radius:8px}
-::-webkit-scrollbar-thumb:hover{background:var(--gold-deep)}
+html{scrollbar-color:var(--line-2) var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold-l);color:var(--ink)}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 
-/* ---------- top bar ---------- */
-.bar{position:sticky;top:0;z-index:20;background:rgba(18,19,24,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;align-items:center;gap:24px;height:72px}
+/* ---------- pasek ---------- */
+.bar{background:var(--card);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:16px;height:76px}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.coin{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-2),var(--gold) 55%,var(--gold-deep));display:grid;place-items:center;box-shadow:inset 0 0 0 2px rgba(18,19,24,.35),0 2px 8px rgba(0,0,0,.4)}
-.coin b{font:700 15px/1 var(--serif);color:var(--ink);letter-spacing:.02em}
-.brand-t{display:flex;flex-direction:column;line-height:1.1}
-.brand-t strong{font:700 19px/1.1 var(--serif);letter-spacing:.14em;color:var(--gold-2)}
-.brand-t span{font:700 11px/1.3 var(--sans);letter-spacing:.32em;color:var(--muted)}
-.clock{margin-left:auto;text-align:right;line-height:1.25}
-.clock b{display:block;font:700 22px/1.1 var(--sans);font-variant-numeric:tabular-nums;color:var(--text)}
-.clock span{font-size:13px;color:var(--muted)}
+.coin{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,#d9b866,var(--gold) 55%,var(--gold-d));display:grid;place-items:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.45),0 2px 6px rgba(140,106,34,.35)}
+.coin b{font:800 15px/1 var(--sans);color:#fff;letter-spacing:.02em}
+.brand-t strong{display:block;font:800 19px/1.15 var(--sans);letter-spacing:.12em}
+.brand-t span{display:block;font:600 13px/1.3 var(--sans);color:var(--ink-3);letter-spacing:.04em}
+.clock{margin-left:auto;text-align:right;line-height:1.3}
+.clock b{display:block;font:800 22px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.clock span{font-size:14px;color:var(--ink-3)}
 
-/* ---------- intro ---------- */
-.intro{padding:56px 0 24px;position:relative}
-.intro::before{content:"";position:absolute;inset:0 0 auto;height:420px;background:radial-gradient(60% 100% at 85% 0%,rgba(212,175,90,.13),transparent 70%);pointer-events:none}
-.intro .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:end}
-h1{margin:0;font:600 clamp(42px,5vw,72px)/1.04 var(--serif);letter-spacing:-.01em;text-wrap:balance}
-h1 em{font-style:normal;color:var(--gold)}
-.lede{margin:22px 0 0;max-width:46ch;font-size:19px;color:var(--muted)}
-.lede kbd{font:700 14px/1 var(--sans);color:var(--gold-2);background:var(--ink-3);border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:3px 7px}
-.tools{display:flex;flex-direction:column;gap:14px}
-.search{position:relative}
-.search svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:22px;height:22px;color:var(--gold)}
-.search input{width:100%;height:64px;padding:0 64px 0 56px;background:var(--ink-2);border:1.5px solid var(--line);border-radius:var(--r);color:var(--text);font:600 18px var(--sans);caret-color:var(--gold);transition:border-color .2s,box-shadow .2s}
-.search input::placeholder{color:var(--faint);font-weight:500}
-.search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(212,175,90,.18)}
-.search kbd{position:absolute;right:18px;top:50%;transform:translateY(-50%);font:700 13px/1 var(--sans);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{appearance:none;cursor:pointer;height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--text);font:700 15px var(--sans);transition:background .2s,border-color .2s,color .2s}
-.chip:hover{border-color:var(--gold-deep)}
-.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.recent{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--muted);min-height:32px}
-.recent a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text);font-weight:600;padding:5px 12px;border-radius:999px;background:var(--ink-3)}
-.recent a:hover{background:var(--line)}
-.recent a i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+/* ---------- hero ---------- */
+.hero{position:relative;background:#efe9dd url("img/hero.webp") right center/cover no-repeat;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,245,240,.97) 0%,rgba(247,245,240,.9) 38%,rgba(247,245,240,.35) 62%,rgba(247,245,240,0) 80%)}
+.hero .wrap{position:relative;padding-top:64px;padding-bottom:120px}
+h1{margin:0;max-width:16ch;font:800 clamp(36px,4.4vw,58px)/1.08 var(--sans);letter-spacing:-.025em;text-wrap:balance}
+h1 span{color:var(--gold-d)}
+.lede{margin:16px 0 0;max-width:44ch;font-size:19px;color:var(--ink-2)}
+.search{position:relative;display:block;max-width:520px;margin-top:28px}
+.search svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:22px;height:22px;color:var(--gold-d)}
+.search input{width:100%;height:62px;padding:0 20px 0 56px;background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;color:var(--ink);font:600 18px var(--sans);box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.search input::placeholder{color:var(--ink-3);font-weight:500}
+.search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(184,145,63,.2),var(--shadow)}
 
-/* ---------- sessions ---------- */
-.session{padding:36px 0 24px}
-.s-head{display:flex;align-items:baseline;gap:20px;padding-bottom:18px;margin-bottom:28px;border-bottom:1px solid var(--line)}
-.s-head h2{margin:0;font:600 34px/1.1 var(--serif);letter-spacing:-.01em}
-.s-head p{margin:0;color:var(--muted);font-size:15px}
-.s-head .roman{font:600 15px/1 var(--serif);color:var(--gold);letter-spacing:.12em;margin-left:auto}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px}
-.grid.two > .lot{grid-column:span 6}
-.grid.three > .lot{grid-column:span 4}
+/* ---------- szybki dostęp ---------- */
+.quick{position:relative;margin-top:-72px;z-index:2}
+.quick-in{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-h);padding:22px 24px}
+.quick h2{margin:0 0 14px 4px;font:800 14px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.q-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.q{display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 6px 12px;border-radius:14px;text-decoration:none;text-align:center;font:700 14px/1.25 var(--sans);transition:background .2s}
+.q:hover{background:var(--bg)}
+.q .tile{width:60px;height:60px;border-radius:16px;background:var(--c);display:grid;place-items:center;color:#fff;box-shadow:0 6px 14px -6px var(--c);transition:transform .35s var(--ease)}
+.q:hover .tile{transform:translateY(-3px)}
+.q .tile svg{width:28px;height:28px;stroke-width:1.8}
 
-/* ---------- lot ---------- */
-.lot{position:relative;display:flex;flex-direction:column;background:var(--ink-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease)}
-.lot:hover{transform:translateY(-4px);border-color:rgba(212,175,90,.55);box-shadow:0 22px 48px -18px rgba(0,0,0,.75)}
-.lot[hidden]{display:none}
-.plate{position:relative;display:block;background:var(--c);padding:30px 30px 0;overflow:hidden;text-decoration:none}
-.plate::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 40%);pointer-events:none}
-.shot{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:10px 10px 0 0;box-shadow:0 -2px 0 rgba(255,255,255,.18),0 18px 40px -10px rgba(0,0,0,.6);transform-origin:50% 100%;transition:transform .6s var(--ease)}
-.lot:hover .shot{transform:translateY(-6px) scale(1.02)}
-.grid.three .plate{padding:24px 24px 0}
-.lock{position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(18,19,24,.82);color:var(--gold-2);font:700 13px var(--sans);z-index:2}
-.lock svg{width:15px;height:15px}
-.body{display:flex;flex-direction:column;flex:1;padding:24px 28px 28px}
-.title-row{display:flex;align-items:flex-start;gap:18px}
-.num{flex:none;font:600 64px/.8 var(--serif);color:var(--gold);min-width:.62em;font-variant-numeric:lining-nums;transition:color .3s,transform .5s var(--ease)}
-.lot:hover .num{color:var(--gold-2);transform:translateY(-2px)}
-.lot h3{margin:2px 0 0;font:600 30px/1.1 var(--serif);letter-spacing:-.01em;text-wrap:balance}
-.grid.three .lot h3{font-size:26px}
-.grid.three .num{font-size:54px}
-.desc{margin:14px 0 0;color:var(--muted);font-size:16px;max-width:52ch}
-.meta{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 0;padding:0;font-size:14px;font-weight:600;color:var(--text)}
-.meta li{display:inline-flex;align-items:center;gap:7px}
-.meta svg{width:16px;height:16px;color:var(--gold)}
-.actions{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:24px}
-.open{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 26px;border-radius:12px;background:var(--gold);color:var(--ink);font:800 17px var(--sans);text-decoration:none;box-shadow:0 4px 10px -4px rgba(0,0,0,.6);transition:background .2s,transform .2s var(--ease),box-shadow .2s}
-.open:hover{background:var(--gold-2);box-shadow:0 8px 18px -6px rgba(0,0,0,.7)}
+/* ---------- działy ---------- */
+.section{padding-top:56px}
+.s-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.s-ico{width:44px;height:44px;border-radius:12px;background:var(--gold-l);color:var(--gold-d);display:grid;place-items:center}
+.s-head h2{margin:0;font:800 28px/1.15 var(--sans);letter-spacing:-.015em}
+.s-head p{margin:2px 0 0;color:var(--ink-3);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.section[hidden],.card[hidden]{display:none}
+
+/* ---------- karta ---------- */
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-h);border-color:var(--line-2)}
+.preview{position:relative;display:block;padding:16px 16px 0;background:linear-gradient(180deg,var(--c) 0 64px,#f1ede4 64px);text-decoration:none;overflow:hidden}
+.preview img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left;border-radius:10px 10px 0 0;border:1px solid rgba(25,28,36,.08);border-bottom:0;box-shadow:0 10px 24px -12px rgba(25,28,36,.35);transition:transform .6s var(--ease)}
+.card:hover .preview img{transform:translateY(-4px)}
+.badge{position:absolute;top:26px;right:26px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#fff;color:var(--ink);font:700 13px var(--sans);box-shadow:0 4px 12px -4px rgba(25,28,36,.3)}
+.badge svg{width:15px;height:15px;color:var(--gold-d)}
+.c-body{display:flex;flex-direction:column;flex:1;padding:22px 24px 24px}
+.c-title{display:flex;align-items:center;gap:14px}
+.c-title .tile{width:48px;height:48px;border-radius:13px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none}
+.c-title .tile svg{width:24px;height:24px}
+.card h3{margin:0;font:800 22px/1.2 var(--sans);letter-spacing:-.01em}
+.card .what{margin:2px 0 0;font-size:14px;font-weight:700;color:var(--gold-d)}
+.desc{margin:16px 0 0;color:var(--ink-2);font-size:16px}
+.feat{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:15px;font-weight:600}
+.feat li{display:flex;gap:10px;align-items:flex-start}
+.feat svg{width:18px;height:18px;margin-top:2px;color:var(--gold)}
+.actions{display:flex;gap:10px;margin-top:auto;padding-top:22px}
+.open{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 20px;border-radius:12px;background:var(--ink);color:#fff;font:800 16px var(--sans);text-decoration:none;transition:background .2s,transform .15s}
+.open:hover{background:var(--gold-d)}
 .open:active{transform:translateY(1px)}
-.open svg{width:20px;height:20px;stroke-width:2.2;transition:transform .3s var(--ease)}
-.open:hover svg{transform:translate(2px,-2px)}
-.grid.three .key{display:none}
-.copy{white-space:nowrap;appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;height:54px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--text);font:700 15px var(--sans);transition:border-color .2s,background .2s}
-.copy:hover{border-color:var(--gold-deep);background:var(--ink-3)}
-.copy.done{border-color:var(--gold);color:var(--gold-2)}
-.key{margin-left:auto;font-size:13px;color:var(--faint);white-space:nowrap}
-.key kbd{font:700 13px/1 var(--sans);color:var(--muted);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:3px 7px}
+.open svg{transition:transform .3s var(--ease)}
+.open:hover svg{transform:translateX(3px)}
+.copy{appearance:none;cursor:pointer;display:inline-grid;place-items:center;width:54px;height:54px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;color:var(--ink-2);transition:border-color .2s,color .2s,background .2s}
+.copy:hover{border-color:var(--gold);color:var(--gold-d);background:var(--gold-l)}
+.copy.done{border-color:var(--gold);color:var(--gold-d)}
 
-.empty{display:none;padding:48px 0 24px;text-align:left}
+.empty{display:none;margin-top:48px;padding:40px;background:var(--card);border:1px dashed var(--line-2);border-radius:20px;text-align:center}
 .empty.on{display:block}
-.empty p{margin:0 0 16px;font:600 26px/1.2 var(--serif)}
+.empty p{margin:0 0 16px;font:700 20px var(--sans)}
+.btn-2{appearance:none;cursor:pointer;height:48px;padding:0 22px;border-radius:12px;border:0;background:var(--ink);color:#fff;font:700 15px var(--sans)}
 
-footer{margin-top:56px;border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center}
-footer strong{color:var(--gold-2);font:700 14px var(--serif);letter-spacing:.16em}
+footer{margin-top:72px;background:var(--card);border-top:1px solid var(--line);padding:28px 0 36px;color:var(--ink-3);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center}
+footer strong{color:var(--ink);letter-spacing:.12em}
 
-.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:var(--text);color:var(--ink);font:700 15px var(--sans);padding:12px 20px;border-radius:12px;box-shadow:0 12px 32px -8px rgba(0,0,0,.6);transition:opacity .25s,transform .35s var(--ease);pointer-events:none;z-index:30}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fff;font:700 15px var(--sans);padding:12px 20px;border-radius:12px;box-shadow:var(--shadow-h);transition:opacity .25s,transform .35s var(--ease);pointer-events:none;z-index:30}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
-@media (max-width:1080px){
-  .grid.three > .lot{grid-column:span 6}
-  .grid.three > .lot:last-child:nth-child(odd){grid-column:span 12}
-  .intro .wrap{grid-template-columns:1fr;gap:32px}
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .q-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
-@media (max-width:760px){
+@media (max-width:720px){
+  .grid.two{grid-template-columns:1fr}
   .wrap{padding:0 16px}
-  .bar .wrap{height:64px;gap:12px}
-  .clock span{display:none}
+  .bar .wrap{height:66px}
+  .brand-t span,.clock span{display:none}
   .clock b{font-size:18px}
-  .intro{padding:36px 0 20px}
+  .hero{background-position:72% center}
+  .hero::before{background:linear-gradient(180deg,rgba(247,245,240,.94),rgba(247,245,240,.82))}
+  .hero .wrap{padding-top:36px;padding-bottom:100px}
   .lede{font-size:17px}
-  .grid{gap:20px}
-  .grid.two > .lot,.grid.three > .lot,.grid.three > .lot:last-child:nth-child(odd){grid-column:span 12}
-  .s-head{flex-wrap:wrap;gap:6px 14px}
-  .s-head h2{font-size:28px}
-  .s-head p{order:3;width:100%}
-  .plate,.grid.three .plate{padding:20px 20px 0}
-  .body{padding:20px}
-  .num,.grid.three .num{font-size:50px}
-  .lot h3,.grid.three .lot h3{font-size:25px}
-  .open{flex:1}
-  .key{display:none}
-  .search input{height:58px}
-  .search kbd{display:none}
+  .quick-in{padding:18px 12px}
+  .q-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+  .q{padding:10px 2px;font-size:12.5px}
+  .q .tile{width:52px;height:52px;border-radius:14px}
+  .grid{grid-template-columns:1fr;gap:18px}
+  .section{padding-top:40px}
+  .s-head h2{font-size:24px}
+  .c-body{padding:20px}
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{transition:none!important;animation:none!important}
-}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
 </style>
 </head>
 <body>
-<!--
-THESIS: Firmowe narzędzia AZ Aurum jako katalog domu aukcyjnego: każda aplikacja to LOT z numerem (który jest też skrótem klawiszowym), działy to sesje katalogu. Odrzuca generyczną białą siatkę ikon w stylu launchera SaaS.
-OWN-WORLD: grafit #121318, złoto #d4af5a tylko na numery lotów i akcje; Bodoni Moda (numery, tytuły) + Manrope (UI). Każdy lot ma tablicę w kolorze własnej aplikacji z prawdziwym zrzutem ekranu.
-STORY: pracownik widzi wszystkie narzędzia, rozpoznaje je po podglądzie i kolorze, otwiera jednym kliknięciem lub klawiszem 1–7.
-FIRST VIEWPORT: duży nagłówek Bodoni po lewej, wyszukiwarka + filtry działów po prawej, zaraz pod nim Sesja I z dwoma dużymi lotami i złotym „Otwórz”.
-FORM: katalog aukcyjny, pozycja 6 z listy, seed 80429c6d.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
--->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-  <symbol id="i-open" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
-  <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6"/></symbol>
-  <symbol id="i-live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 16.2a6 6 0 0 0 0-8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 19.1a10 10 0 0 0 0-14.2"/></symbol>
-  <symbol id="i-device" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
-  <symbol id="i-excel" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></symbol>
-  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
-  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
+  <symbol id="i-offer" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-tasks" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m7 12 3 3 7-7"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1zM17 8a5 5 0 0 1 0 8"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
 </svg>
 
 <header class="bar">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="AZ Aurum Dashboard App — strona główna">
-      <span class="coin"><b>AZ</b></span>
-      <span class="brand-t"><strong>AZ AURUM</strong><span>DASHBOARD APP</span></span>
+    <a class="brand" href="./">
+      <span class="coin" aria-hidden="true"><b>AZ</b></span>
+      <span class="brand-t"><strong>AZ AURUM</strong><span>Dashboard aplikacji firmowych</span></span>
     </a>
-    <div class="clock" aria-live="off"><b id="time">--:--</b><span id="date"></span></div>
+    <div class="clock"><b id="time">--:--</b><span id="date"></span></div>
   </div>
 </header>
 
 <main>
-  <section class="intro">
+  <section class="hero">
     <div class="wrap">
-      <div>
-        <h1>Narzędzia <em>AZ&nbsp;Aurum</em> w&nbsp;jednym miejscu</h1>
-        <p class="lede">Kliknij <b>Otwórz</b>, a aplikacja uruchomi się w nowej karcie. Na komputerze wystarczy nacisnąć numer: <kbd>1</kbd>&ndash;<kbd>7</kbd>.</p>
-      </div>
-      <div class="tools">
-        <label class="search">
-          <span class="sr">Szukaj aplikacji</span>
-          <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
-          <input id="q" type="search" placeholder="Szukaj aplikacji…" autocomplete="off">
-          <kbd aria-hidden="true">/</kbd>
-        </label>
-        <div class="chips" role="group" aria-label="Pokaż dział">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">Wszystkie</button>
-          <button class="chip" type="button" data-f="sprzedaz" aria-pressed="false">Zamówienia</button>
-          <button class="chip" type="button" data-f="marketing" aria-pressed="false">Marketing</button>
-          <button class="chip" type="button" data-f="tresci" aria-pressed="false">Treści i zadania</button>
-        </div>
-        <div class="recent" id="recent" aria-live="polite"></div>
-      </div>
+      <h1>Aplikacje firmowe <span>AZ&nbsp;Aurum</span></h1>
+      <p class="lede">Wszystkie narzędzia do pracy w jednym miejscu. Wybierz aplikację i kliknij <b>Otwórz</b>, a uruchomi się w nowej karcie.</p>
+      <label class="search">
+        <span class="sr">Szukaj aplikacji</span>
+        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Szukaj aplikacji…" autocomplete="off">
+      </label>
     </div>
   </section>
 
   <div class="wrap">
-    <section class="session" data-s="sprzedaz" aria-labelledby="s1">
-      <div class="s-head"><h2 id="s1">Zamówienia</h2><p>Codzienna obsługa telefonów i przesyłek</p><span class="roman" aria-hidden="true">SESJA I</span></div>
+    <nav class="quick" aria-label="Szybki dostęp">
+      <div class="quick-in">
+        <h2>Szybki dostęp</h2>
+        <div class="q-grid" id="quick"></div>
+      </div>
+    </nav>
+
+    <section class="section" data-s="sprzedaz" aria-labelledby="s1">
+      <div class="s-head"><span class="s-ico"><svg class="i"><use href="#i-cart"/></svg></span><div><h2 id="s1">Zamówienia</h2><p>Codzienna obsługa telefonów i przesyłek</p></div></div>
       <div class="grid two">
-        <article class="lot" data-n="1" style="--c:#15703c" data-k="zamówienia telefon licznik kolekcje excel tabela 250 lat usa 10 przykazań magia złota">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/zamowienia-dashboard/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/zamowienia.webp" alt="" width="960" height="600" loading="eager"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">1</span><div><h3>Zamówienia telefoniczne</h3></div></div>
-            <p class="desc">Licznik zamówień przyjętych przez telefon. Jedno kliknięcie „+” przy kolekcji, tabela całego miesiąca i eksport do Excela.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-live"/></svg>Na żywo dla całego zespołu</li><li><svg class="i"><use href="#i-excel"/></svg>Pobierz do Excela</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/zamowienia-dashboard/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>1</kbd></span></div>
+        <article class="card" style="--c:#16803f" data-k="zamówienia telefon licznik kolekcje excel tabela">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/zamowienia-dashboard/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/zamowienia.webp" alt="" width="960" height="600"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-phone"><svg class="i"><use href="#i-phone"/></svg></span><div><h3>Zamówienia telefoniczne</h3><p class="what">Licznik zamówień z telefonu</p></div></div>
+            <p class="desc">Dodajesz zamówienie jednym kliknięciem „+” przy kolekcji. Cały zespół widzi wynik na żywo.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Tabela całego miesiąca</li><li><svg class="i"><use href="#i-check"/></svg>Eksport do Excela</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/zamowienia-dashboard/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
-        <article class="lot" data-n="2" style="--c:#0f5a4b" data-k="pobranie za pobraniem cod przesyłki potwierdzone rezygnacja sms telefon e-mail">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/pobrania-dashboard/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="lock"><svg class="i"><use href="#i-lock"/></svg>Hasło zespołu</span><img class="shot" src="podglady/pobrania.webp" alt="" width="960" height="600" loading="eager"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">2</span><div><h3>Zamówienia za pobraniem</h3></div></div>
-            <p class="desc">Lista zamówień za pobraniem: kontakt mailem, SMS-em lub telefonicznie, potwierdzenia, opłacenia i rezygnacje z datami.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-lock"/></svg>Wymaga hasła zespołu</li><li><svg class="i"><use href="#i-team"/></svg>Wspólna lista</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/pobrania-dashboard/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>2</kbd></span></div>
+        <article class="card" style="--c:#0e6b57" data-k="pobranie za pobraniem cod przesyłki potwierdzone rezygnacja sms">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/pobrania-dashboard/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="badge"><svg class="i"><use href="#i-lock"/></svg>Hasło zespołu</span><img src="podglady/pobrania.webp" alt="" width="960" height="600"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-box"><svg class="i"><use href="#i-box"/></svg></span><div><h3>Zamówienia za pobraniem</h3><p class="what">Kontrola przesyłek COD</p></div></div>
+            <p class="desc">Wspólna lista zamówień za pobraniem: kontakt z klientem, potwierdzenia, opłacenia i rezygnacje.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Kontakt mailem, SMS-em i telefonicznie</li><li><svg class="i"><use href="#i-check"/></svg>Logowanie hasłem zespołu</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/pobrania-dashboard/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="session" data-s="marketing" aria-labelledby="s2">
-      <div class="s-head"><h2 id="s2">Marketing</h2><p>Mailingi, oferty dla klientów i kampanie Google</p><span class="roman" aria-hidden="true">SESJA II</span></div>
-      <div class="grid three">
-        <article class="lot" data-n="3" style="--c:#13296a" data-k="mailing plan mailingów wysyłka newsletter kalendarz poniedziałek środa piątek">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/mailing-plan/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/mailing-plan.webp" alt="" width="960" height="600" loading="lazy"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">3</span><div><h3>Plan mailingów</h3></div></div>
-            <p class="desc">Tygodniowy plan wysyłek na poniedziałek, środę i piątek. Status każdego mailingu: plan, gotowy, wysłany.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-calendar"/></svg>Kalendarz tygodnia</li><li><svg class="i"><use href="#i-team"/></svg>Wszyscy widzą ten sam plan</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/mailing-plan/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>3</kbd></span></div>
+    <section class="section" data-s="marketing" aria-labelledby="s2">
+      <div class="s-head"><span class="s-ico"><svg class="i"><use href="#i-megaphone"/></svg></span><div><h2 id="s2">Marketing</h2><p>Mailingi, oferty dla klientów i kampanie Google</p></div></div>
+      <div class="grid">
+        <article class="card" style="--c:#1d3a8a" data-k="mailing plan mailingów wysyłka newsletter kalendarz">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/mailing-plan/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/mailing-plan.webp" alt="" width="960" height="600" loading="lazy"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-mail"><svg class="i"><use href="#i-mail"/></svg></span><div><h3>Plan mailingów</h3><p class="what">Kalendarz wysyłek</p></div></div>
+            <p class="desc">Plan mailingów na poniedziałek, środę i piątek. Wszyscy widzą ten sam plan.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Statusy: plan, gotowy, wysłany</li><li><svg class="i"><use href="#i-check"/></svg>Widok całego tygodnia</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/mailing-plan/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
-        <article class="lot" data-n="4" style="--c:#1b4aa3" data-k="generator ofert oferta mailowa outlook klient moneta mennica handlowiec">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/GENERATOR-OFERT/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/oferty.webp" alt="" width="960" height="600" loading="lazy"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">4</span><div><h3>Generator ofert</h3></div></div>
-            <p class="desc">Oferta mailowa z monetami w stałym, firmowym układzie. Wypełniasz pola, kopiujesz gotową wiadomość do Outlooka.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-mail"/></svg>Kopiuj do Outlooka</li><li><svg class="i"><use href="#i-device"/></svg>Działa w przeglądarce</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/GENERATOR-OFERT/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>4</kbd></span></div>
+        <article class="card" style="--c:#1f5fc4" data-k="generator ofert oferta mailowa outlook klient moneta">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/GENERATOR-OFERT/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/oferty.webp" alt="" width="960" height="600" loading="lazy"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-offer"><svg class="i"><use href="#i-offer"/></svg></span><div><h3>Generator ofert</h3><p class="what">Oferty mailowe dla klientów</p></div></div>
+            <p class="desc">Składasz ofertę z monetami w stałym, firmowym układzie i kopiujesz ją prosto do Outlooka.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Pojedyncza i multi-oferta</li><li><svg class="i"><use href="#i-check"/></svg>Gotowe do wklejenia w Outlooka</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/GENERATOR-OFERT/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
-        <article class="lot" data-n="5" style="--c:#3a2a78" data-k="ads toolkit google ads kampania roas rentowność budżet słowa kluczowe utm rsa raport ppc audyt">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/ads-toolkit/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/ads-toolkit.webp" alt="" width="960" height="600" loading="lazy"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">5</span><div><h3>Ads Toolkit</h3></div></div>
-            <p class="desc">Dziewięć narzędzi do Google Ads: audyt kampanii, próg rentowności, budżet, słowa kluczowe, UTM, reklamy RSA i raporty PPC.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-shield"/></svg>Nic nie wysyła na serwer</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/ads-toolkit/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>5</kbd></span></div>
+        <article class="card" style="--c:#5b3fb8" data-k="ads toolkit google ads kampania roas rentowność budżet słowa kluczowe utm rsa raport ppc audyt">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/ads-toolkit/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/ads-toolkit.webp" alt="" width="960" height="600" loading="lazy"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-chart"><svg class="i"><use href="#i-chart"/></svg></span><div><h3>Ads Toolkit</h3><p class="what">Narzędzia do Google Ads</p></div></div>
+            <p class="desc">Dziewięć narzędzi do kampanii: audyt, rentowność, budżet, słowa kluczowe, UTM, reklamy RSA i raporty.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Audyt kampanii z raportem PDF</li><li><svg class="i"><use href="#i-check"/></svg>Bez logowania</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/ads-toolkit/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="session" data-s="tresci" aria-labelledby="s3">
-      <div class="s-head"><h2 id="s3">Treści i zadania</h2><p>Opisy produktów do e-Sklepu i plan pracy</p><span class="roman" aria-hidden="true">SESJA III</span></div>
+    <section class="section" data-s="tresci" aria-labelledby="s3">
+      <div class="s-head"><span class="s-ico"><svg class="i"><use href="#i-pen"/></svg></span><div><h2 id="s3">Treści i zadania</h2><p>Opisy produktów do e-Sklepu i plan pracy</p></div></div>
       <div class="grid two">
-        <article class="lot" data-n="6" style="--c:#6a4c18" data-k="html card creator karta opis produktu e-sklep szablon kod html word">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/HTML-CARD-CREATOR/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/karty-html.webp" alt="" width="960" height="600" loading="lazy"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">6</span><div><h3>HTML Card Creator</h3></div></div>
-            <p class="desc">Opisy produktów do e-Sklepu z gotowych szablonów. Wklejasz tekst, widzisz podgląd i kopiujesz kod HTML albo tekst do Worda.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-code"/></svg>Kod HTML do e-Sklepu</li><li><svg class="i"><use href="#i-team"/></svg>Szablony wspólne dla wszystkich</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/HTML-CARD-CREATOR/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>6</kbd></span></div>
+        <article class="card" style="--c:#9a7424" data-k="html card creator karta opis produktu e-sklep szablon kod html word">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/HTML-CARD-CREATOR/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/karty-html.webp" alt="" width="960" height="600" loading="lazy"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-layout"><svg class="i"><use href="#i-layout"/></svg></span><div><h3>HTML Card Creator</h3><p class="what">Opisy produktów do e-Sklepu</p></div></div>
+            <p class="desc">Wklejasz tekst do gotowego szablonu, widzisz podgląd i kopiujesz kod HTML do e-Sklepu.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Szablony wspólne dla wszystkich</li><li><svg class="i"><use href="#i-check"/></svg>Kopiowanie jako tekst do Worda</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/HTML-CARD-CREATOR/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
-        <article class="lot" data-n="7" style="--c:#2c3896" data-k="workflow zadania panel zadań praca lista todo termin pilne">
-          <a class="plate" href="https://borkowskiprzemo098.github.io/WORKFLOW-V1/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="shot" src="podglady/workflow.webp" alt="" width="960" height="600" loading="lazy"></a>
-          <div class="body">
-            <div class="title-row"><span class="num" aria-hidden="true">7</span><div><h3>Workflow</h3></div></div>
-            <p class="desc">Panel zadań na dziś, tydzień i cały miesiąc. Pilne sprawy, zaległości i archiwum w jednym widoku.</p>
-            <ul class="meta"><li><svg class="i"><use href="#i-device"/></svg>Zadania zapisane na tym komputerze</li></ul>
-            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/WORKFLOW-V1/" target="_blank" rel="noopener">Otwórz<svg class="i" aria-hidden="true"><use href="#i-open"/></svg></a><button class="copy" type="button">Kopiuj link</button><span class="key">klawisz <kbd>7</kbd></span></div>
+        <article class="card" style="--c:#3b4bd6" data-k="workflow zadania panel zadań praca lista todo termin pilne">
+          <a class="preview" href="https://borkowskiprzemo098.github.io/WORKFLOW-V1/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="podglady/workflow.webp" alt="" width="960" height="600" loading="lazy"></a>
+          <div class="c-body">
+            <div class="c-title"><span class="tile" data-ico="i-tasks"><svg class="i"><use href="#i-tasks"/></svg></span><div><h3>Workflow</h3><p class="what">Twój panel zadań</p></div></div>
+            <p class="desc">Zadania na dziś, tydzień i cały miesiąc. Pilne sprawy i zaległości w jednym widoku.</p>
+            <ul class="feat"><li><svg class="i"><use href="#i-check"/></svg>Praca i sprawy prywatne osobno</li><li><svg class="i"><use href="#i-check"/></svg>Zapisuje się na tym komputerze</li></ul>
+            <div class="actions"><a class="open" href="https://borkowskiprzemo098.github.io/WORKFLOW-V1/" target="_blank" rel="noopener">Otwórz aplikację<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="copy" type="button" aria-label="Kopiuj link do aplikacji" title="Kopiuj link"><svg class="i"><use href="#i-copy"/></svg></button></div>
           </div>
         </article>
       </div>
     </section>
 
     <div class="empty" id="empty" role="status">
-      <p>Nie ma aplikacji pasującej do „<span id="eq"></span>”.</p>
-      <button class="chip" type="button" id="clear">Pokaż wszystkie aplikacje</button>
+      <p>Nie znaleziono aplikacji „<span id="eq"></span>”.</p>
+      <button class="btn-2" type="button" id="clear">Pokaż wszystkie</button>
     </div>
   </div>
 </main>
@@ -311,8 +284,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <footer>
   <div class="wrap">
     <strong>AZ AURUM</strong>
-    <span>7 aplikacji · każda otwiera się w nowej karcie</span>
-    <span>Dodaj tę stronę do zakładek, żeby mieć wszystko pod ręką.</span>
+    <span>7 aplikacji firmowych · każda otwiera się w nowej karcie</span>
+    <span>Dodaj tę stronę do zakładek przeglądarki.</span>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -320,83 +293,49 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <script>
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const lots = $$('.lot'), sessions = $$('.session');
-  const store = {
-    get(k) { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} }
-  };
+  const cards = $$('.card'), sections = $$('.section');
 
-  // zegar
   const tFmt = new Intl.DateTimeFormat('pl-PL', { hour: '2-digit', minute: '2-digit' });
   const dFmt = new Intl.DateTimeFormat('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });
   const tick = () => { const d = new Date(); $('#time').textContent = tFmt.format(d); $('#date').textContent = dFmt.format(d); };
   tick(); setInterval(tick, 15000);
 
-  // ostatnio otwierane
-  const info = n => { const l = lots.find(x => x.dataset.n === String(n)); return l && { n, name: $('h3', l).textContent, href: $('.open', l).href, c: l.style.getPropertyValue('--c') }; };
-  const renderRecent = () => {
-    const box = $('#recent'), list = (store.get('azd-recent') || []).map(info).filter(Boolean);
-    box.innerHTML = '';
-    if (!list.length) return;
-    box.append('Ostatnio otwierane:');
-    list.forEach(a => {
-      const el = document.createElement('a');
-      el.href = a.href; el.target = '_blank'; el.rel = 'noopener'; el.dataset.n = a.n;
-      el.innerHTML = `<i style="--c:${a.c}"></i>`; el.append(a.name);
-      box.append(el);
-    });
-  };
-  const remember = n => { const r = (store.get('azd-recent') || []).filter(x => x !== n); r.unshift(n); store.set('azd-recent', r.slice(0, 3)); renderRecent(); };
-  document.addEventListener('click', e => {
-    const a = e.target.closest('a[target=_blank]'); if (!a) return;
-    const n = a.closest('.lot')?.dataset.n || a.dataset.n; if (n) setTimeout(() => remember(n), 50);
+  // szybki dostęp — budowany z kart, żeby lista była zawsze zgodna
+  const quick = $('#quick');
+  cards.forEach(c => {
+    const a = document.createElement('a');
+    a.className = 'q'; a.href = $('.open', c).href; a.target = '_blank'; a.rel = 'noopener';
+    a.style.setProperty('--c', c.style.getPropertyValue('--c'));
+    a.innerHTML = `<span class="tile"><svg class="i"><use href="#${$('.tile', c).dataset.ico}"/></svg></span>`;
+    a.append($('h3', c).textContent);
+    quick.append(a);
   });
-  renderRecent();
 
-  // kopiuj link
   const toast = $('#toast'); let tt;
   const say = m => { toast.textContent = m; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('on'), 1800); };
   $$('.copy').forEach(b => b.addEventListener('click', async () => {
-    const lot = b.closest('.lot'), url = $('.open', lot).href;
+    const card = b.closest('.card'), url = $('.open', card).href;
     try { await navigator.clipboard.writeText(url); }
     catch { const t = document.createElement('textarea'); t.value = url; document.body.append(t); t.select(); document.execCommand('copy'); t.remove(); }
-    b.classList.add('done'); b.textContent = 'Skopiowano';
-    say(`Link do „${$('h3', lot).textContent}” jest w schowku`);
-    setTimeout(() => { b.classList.remove('done'); b.textContent = 'Kopiuj link'; }, 1800);
+    b.classList.add('done'); $('use', b).setAttribute('href', '#i-check');
+    say(`Skopiowano link: ${$('h3', card).textContent}`);
+    setTimeout(() => { b.classList.remove('done'); $('use', b).setAttribute('href', '#i-copy'); }, 1800);
   }));
 
-  // filtr + wyszukiwarka
-  const q = $('#q'); let f = 'all';
+  const q = $('#q');
   const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l');
   const apply = () => {
     const words = norm(q.value.trim()).split(/\s+/).filter(Boolean); let any = 0;
-    sessions.forEach(s => {
+    sections.forEach(s => {
       let shown = 0;
-      $$('.lot', s).forEach(l => {
-        const hay = norm(l.dataset.k + ' ' + l.textContent);
-        const ok = (f === 'all' || s.dataset.s === f) && words.every(w => hay.includes(w));
-        l.hidden = !ok; shown += ok;
-      });
+      $$('.card', s).forEach(c => { const ok = words.every(w => norm(c.dataset.k + ' ' + c.textContent).includes(w)); c.hidden = !ok; shown += ok; });
       s.hidden = !shown; any += shown;
     });
     $('#empty').classList.toggle('on', !any); $('#eq').textContent = q.value.trim();
   };
   q.addEventListener('input', apply);
-  $$('.chip[data-f]').forEach(c => c.addEventListener('click', () => {
-    f = c.dataset.f; $$('.chip[data-f]').forEach(x => x.setAttribute('aria-pressed', x === c)); apply();
-  }));
-  $('#clear').addEventListener('click', () => { q.value = ''; f = 'all'; $$('.chip[data-f]').forEach(x => x.setAttribute('aria-pressed', x.dataset.f === 'all')); apply(); q.focus(); });
-
-  // skróty klawiszowe
-  document.addEventListener('keydown', e => {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
-    if (e.key === '/' && !typing) { e.preventDefault(); q.focus(); return; }
-    if (e.key === 'Escape' && document.activeElement === q) { q.value = ''; apply(); q.blur(); return; }
-    if (typing || !/^[1-7]$/.test(e.key)) return;
-    const a = $(`.lot[data-n="${e.key}"] .open`); if (!a) return;
-    window.open(a.href, '_blank', 'noopener'); remember(e.key);
-  });
+  q.addEventListener('keydown', e => { if (e.key === 'Escape') { q.value = ''; apply(); } });
+  $('#clear').addEventListener('click', () => { q.value = ''; apply(); q.focus(); });
 })();
 </script>
 </body>
